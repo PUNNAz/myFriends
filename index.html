@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รับข้อมูลเพื่อน</title>
+    <link rel="stylesheet" href="CSS/index.css">
+</head>
+<body onload="generateFriendsInfo()">
+    <div id="app">
+        <h1>รับข้อมูลเพื่อน</h1>
+        <button onclick="generateFriendsInfo()">สุ่มจำนวนเพื่อน</button>
+        <div id="friendInputs"></div>
+        <button onclick="submitFriendsInfo()">ยืนยันข้อมูลเพื่อน</button>
+        <button id="displayTotalAgeBtn" style="display: none;" onclick="displayTotalAge()">แสดงจำนวนอายุรวมของเพื่อน</button>
+        <button id="displayTotalAvgBtn" style="display: none;" onclick="displayTotalAvg()">แสดงจำนวนอายุเฉลี่ยของกลุ่มเพื่อน</button>
+        <button id="displayYoungestFriendsBtn" style="display: none;" onclick="displayYoungestFriends()">แสดงเพื่อนที่มีอายุน้อยที่สุด</button>
+        <button id="displayOldestFriendsBtn" style="display: none;" onclick="displayOldestFriends()">แสดงเพื่อนที่มีอายุมากที่สุด</button>
+        <button id="displayResetBtn" style="display: none;" onclick="resetPage()">Reset</button>
+        <div id="friendInfoContainer"></div>
+    </div>
+    <script src="src/index.js"></script>
+</body>
+</html>
