@@ -1,5 +1,27 @@
 let friendsInfo = []; // เก็บข้อมูลเพื่อนในตัวแปร global
 
+// ดักจับการคลิกปุ่ม "สุ่มจำนวนเพื่อน" และเรียกฟังก์ชันสุ่มเพื่อน
+document.getElementById("randomizeBtn").addEventListener("click", generateFriendsInfo);
+
+// ดักจับการคลิกปุ่ม "ยืนยันข้อมูลเพื่อน" และเรียกฟังก์ชันยืนยันข้อมูลเพื่อน
+document.getElementById("submitBtn").addEventListener("click", submitFriendsInfo);
+
+// ดักจับการคลิกปุ่ม "แสดงจำนวนอายุรวมของเพื่อน" และเรียกฟังก์ชันแสดงอายุรวมของเพื่อนทั้งหมด
+document.getElementById("displayTotalAgeBtn").addEventListener("click", displayTotalAge);
+
+// ดักจับการคลิกปุ่ม "แสดงจำนวนอายุเฉลี่ยของเพื่อน" และเรียกฟังก์ชันแสดงอายุเฉลี่ยของเพื่อนทั้งหมด
+document.getElementById("displayTotalAvgBtn").addEventListener("click", displayTotalAvg);
+
+// ดักจับการคลิกปุ่ม "แสดงเพื่อนที่มีอายุน้อยที่สุด" และเรียกฟังก์ชันแสดงอายุเพื่อนที่มีอายุน้อยสุดทั้งหมด
+document.getElementById("displayYoungestFriendsBtn").addEventListener("click", displayYoungestFriends);
+
+// ดักจับการคลิกปุ่ม "แสดงเพื่อนที่มีอายุมากที่สุด" และเรียกฟังก์ชันแสดงอายุเพื่อนที่มีอายุมากสุดทั้งหมด
+document.getElementById("displayOldestFriendsBtn").addEventListener("click", displayOldestFriends);
+
+// ดักจับการคลิกปุ่ม "Reset" และเรียกฟังก์ชัน resetPage
+document.getElementById("resetBtn").addEventListener("click", resetPage);
+
+// ฟังก์ชันสำหรับสุ่มจำนวนเพื่อนและแสดงช่องป้อนข้อมูล
 function generateFriendsInfo() {
     const numFriends = Math.floor(Math.random() * 9) + 1; // สุ่มจำนวนเพื่อนระหว่าง 1 ถึง 9
     const friendInputsContainer = document.getElementById("friendInputs");
@@ -8,16 +30,17 @@ function generateFriendsInfo() {
     for (let i = 0; i < numFriends; i++) {
         const friendDiv = document.createElement("div");
         friendDiv.innerHTML = `
-    <label for="nickname${i}">ชื่อเล่นของเพื่อนที่ ${i + 1}:</label>
-    <input type="text" id="nickname${i}" name="nickname${i}" onchange="upperCase()">
+                    <label for="nickname${i}">ชื่อเล่นของเพื่อนที่ ${i + 1}:</label>
+                    <input type="text" id="nickname${i}" name="nickname${i}" onchange="upperCase()">
 
-    <label for="age${i}">อายุของเพื่อนที่ ${i + 1}:</label>
-    <input type="number" id="age${i}" name="age${i}" min="1" max="120">
-`;
+                    <label for="age${i}">อายุของเพื่อนที่ ${i + 1}:</label>
+                    <input type="number" id="age${i}" name="age${i}" min="1" max="120">
+                `;
         friendInputsContainer.appendChild(friendDiv);
     }
 }
 
+// ฟังก์ชันเปลี่ยนตัวอักษรในช่องป้อนข้อมูลเป็นตัวพิมพ์ใหญ่ทั้งหมด
 function upperCase() {
     const inputs = document.querySelectorAll("input[type='text']");
 
@@ -26,7 +49,7 @@ function upperCase() {
     });
 }
 
-
+// ฟังก์ชันสำหรับยืนยันข้อมูลเพื่อน
 function submitFriendsInfo() {
     const friendInputsContainer = document.getElementById("friendInputs");
     const inputs = friendInputsContainer.querySelectorAll("input");
@@ -59,17 +82,18 @@ function submitFriendsInfo() {
         document.getElementById("displayTotalAvgBtn").style.display = "inline-block";
         document.getElementById("displayYoungestFriendsBtn").style.display = "inline-block";
         document.getElementById("displayOldestFriendsBtn").style.display = "inline-block";
-        document.getElementById("displayResetBtn").style.display = "inline-block";
+        document.getElementById("resetBtn").style.display = "inline-block";
     } else {
         alert("โปรดใส่ชื่อเล่นและอายุของเพื่อนให้ครบทุกคน");
         document.getElementById("displayTotalAgeBtn").style.display = "none";
         document.getElementById("displayTotalAvgBtn").style.display = "none";
         document.getElementById("displayYoungestFriendsBtn").style.display = "none";
         document.getElementById("displayOldestFriendsBtn").style.display = "none";
-        document.getElementById("displayResetBtn").style.display = "none";
+        document.getElementById("resetBtn").style.display = "none";
     }
 }
 
+// ฟังก์ชันคำนวณอายุรวมของเพื่อนทั้งหมด
 function calculateAge() {
     let totalage = 0;
 
@@ -79,17 +103,21 @@ function calculateAge() {
 
     return totalage;
 }
+
+// ฟังก์ชันแสดงอายุรวมของเพื่อนทั้งหมด
 function displayTotalAge() {
     const totalAge = calculateAge();
     const friendInfoContainer = document.getElementById("friendInfoContainer");
     friendInfoContainer.innerHTML = `<p>อายุรวมของเพื่อนทั้งหมด: ${totalAge}</p>`;
 }
+// ฟังก์ชันแสดงอายุรวมของเพื่อนทั้งหมด
 function displayTotalAvg() {
     const totalAge = calculateAge();
     const totalAvg = totalAge / friendsInfo.length;
     const friendInfoContainer = document.getElementById("friendInfoContainer");
     friendInfoContainer.innerHTML = `<p>ค่าเฉลี่ยอายุของเพื่อนทั้งหมด: ${totalAvg.toFixed(2)}</p>`;
 }
+// ฟังก์ชันหาเพื่อนที่มีอายุน้อยที่สุด
 function findYoungestFriends() {
     let minAge = Infinity;
     let youngestFriends = [];
@@ -106,6 +134,7 @@ function findYoungestFriends() {
 
     return youngestFriends;
 }
+// ฟังก์ชันแสดงเพื่อนที่มีอายุน้อยที่สุด
 function displayYoungestFriends() {
     const youngestFriends = findYoungestFriends();
     const friendInfoContainer = document.getElementById("friendInfoContainer");
@@ -120,6 +149,7 @@ function displayYoungestFriends() {
         friendInfoContainer.innerHTML = html;
     }
 }
+// ฟังก์ชันหาเพื่อนที่มีอายุมากที่สุด
 function findOldestFriends() {
     let maxAge = -Infinity;
     let oldestFriends = [];
@@ -136,6 +166,7 @@ function findOldestFriends() {
 
     return oldestFriends;
 }
+// ฟังก์ชันแสดงเพื่อนที่มีอายุมากที่สุด
 function displayOldestFriends() {
     const oldestFriends = findOldestFriends();
     const friendInfoContainer = document.getElementById("friendInfoContainer");
@@ -150,6 +181,8 @@ function displayOldestFriends() {
         friendInfoContainer.innerHTML = html;
     }
 }
+
+// ฟังก์ชันสำหรับล้างข้อมูลทั้งหมด
 function resetPage() {
     document.getElementById("friendInputs").innerHTML = "";
     document.getElementById("friendInfoContainer").innerHTML = "";
@@ -157,6 +190,6 @@ function resetPage() {
     document.getElementById("displayTotalAvgBtn").style.display = "none";
     document.getElementById("displayYoungestFriendsBtn").style.display = "none";
     document.getElementById("displayOldestFriendsBtn").style.display = "none";
-    document.getElementById("displayResetBtn").style.display = "none";
+    document.getElementById("resetBtn").style.display = "none";
     generateFriendsInfo();
 }

@@ -10,14 +10,14 @@
 <body onload="generateFriendsInfo()">
     <div id="app">
         <h1>รับข้อมูลเพื่อน</h1>
-        <button onclick="generateFriendsInfo()">สุ่มจำนวนเพื่อน</button>
+        <button id="randomizeBtn">สุ่มจำนวนเพื่อน</button>
         <div id="friendInputs"></div>
-        <button onclick="submitFriendsInfo()">ยืนยันข้อมูลเพื่อน</button>
-        <button id="displayTotalAgeBtn" style="display: none;" onclick="displayTotalAge()">แสดงจำนวนอายุรวมของเพื่อน</button>
-        <button id="displayTotalAvgBtn" style="display: none;" onclick="displayTotalAvg()">แสดงจำนวนอายุเฉลี่ยของกลุ่มเพื่อน</button>
-        <button id="displayYoungestFriendsBtn" style="display: none;" onclick="displayYoungestFriends()">แสดงเพื่อนที่มีอายุน้อยที่สุด</button>
-        <button id="displayOldestFriendsBtn" style="display: none;" onclick="displayOldestFriends()">แสดงเพื่อนที่มีอายุมากที่สุด</button>
-        <button id="displayResetBtn" style="display: none;" onclick="resetPage()">Reset</button>
+        <button id="submitBtn">ยืนยันข้อมูลเพื่อน</button>
+        <button id="displayTotalAgeBtn" style="display: none;">แสดงจำนวนอายุรวมของเพื่อน</button>
+        <button id="displayTotalAvgBtn" style="display: none;">แสดงจำนวนอายุเฉลี่ยของกลุ่มเพื่อน</button>
+        <button id="displayYoungestFriendsBtn" style="display: none;">แสดงเพื่อนที่มีอายุน้อยที่สุด</button>
+        <button id="displayOldestFriendsBtn" style="display: none;">แสดงเพื่อนที่มีอายุมากที่สุด</button>
+        <button id="resetBtn" style="display: none;">Reset</button>
         <div id="friendInfoContainer"></div>
     </div>
     <script src="src/index.js"></script>
